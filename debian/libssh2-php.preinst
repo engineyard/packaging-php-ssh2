@@ -1,0 +1,36 @@
+#! /bin/sh
+
+set -e
+
+case "$1" in
+  install|upgrade)
+    if [ "XX" = "X$(command -v php5enmod)X" ] ; then # PHP 5.3
+        if test -e /etc/php5/conf.d/ssh2.ini
+        then
+          sed s/^\;extension/extension/ -i /etc/php5/conf.d/ssh2.ini
+        fi
+    else
+        if [ -n "$2" ] && dpkg --compare-versions "$2" lt 0.12-1
+        then
+          ucf --purge /etc/php5/conf.d/ssh2.ini
+        fi
+        if test -e /etc/php5/conf.d/ssh2.ini
+        then
+          sed s/^\;extension/extension/ -i /etc/php5/conf.d/ssh2.ini
+          dpkg-maintscript-helper mv_conffile /etc/php5/conf.d/ssh2.ini \
+              /etc/php5/mods-available/ssh2.ini 0.12-1 -- "$@"
+          rm -f /etc/php5/conf.d/ss2.ini
+        fi
+    fi
+    ;;
+  abort-upgrade)
+    ;;
+  *)
+    echo "preinst called with unknown argument \`$1'" >&2
+    exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

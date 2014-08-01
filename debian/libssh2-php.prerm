@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+if [ "XX" = "X$(command -v php5dismod)X" ] ; then # PHP 5.3 style
+    rm -f /etc/php5/conf.d/ssh.ini
+else
+    dpkg-maintscript-helper mv_conffile /etc/php5/conf.d/ssh2.ini \
+        /etc/php5/mods-available/ssh.ini 0.12-1 -- "$@"
+    rm -f /etc/php5/conf.d/ssh2.ini
+    [ "$1" = "remove" ] && php5dismod ssh2
+fi
+
+#DEBHELPER#
+
+exit 0

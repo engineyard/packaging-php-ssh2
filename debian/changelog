@@ -1,6 +1,5 @@
-php5-ssh2 (0.12-1) unstable; urgency=low
+libssh2-php (0.12-1) unstable; urgency=low
 
-  * Initial Release (Closes: #<ITP bug number>).
+  * Initial release
 
- -- Engine Yard Packaging <packaging@engineyard.com>  Mon, 21 Jul 2014 13:10:55 +0000
-
+ -- Engine Yard Packaging <packaging@engineyard.com>  Fri, 1 Aug 2014 14:00:48 +0100

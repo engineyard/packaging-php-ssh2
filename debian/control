@@ -1,11 +1,11 @@
-Source: php5-ssh2
+Source: php-ssh2
 Section: web
 Priority: optional
 Maintainer: Engine Yard Packaging <packaging@engineyard.com>
 Build-Depends: debhelper (>= 7), po-debconf, xsltproc , php5-dev, libssh2-1-dev
 Standards-Version: 3.9.1
 
-Package: php5-ssh2
+Package: libssh2-php
 Architecture: any
 Depends: ${shlibs:Depends}, ${php:Depends}, ${misc:Depends}
 Description: ssh2 module for PHP 5
